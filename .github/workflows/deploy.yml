@@ -23,13 +23,13 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      # Using standard npm install to avoid lockfile issues
+      # Standard npm install works flawlessly with or without a lockfile
       - name: Install dependencies
         run: npm install
 
-      # Building for a root domain (sayed.github.io) requires a simple "/" base
+      # Fixed base path specifically for your repo name
       - name: Build
-        run: npm run build -- --base /
+        run: npm run build -- --base /sayed.github.io/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
