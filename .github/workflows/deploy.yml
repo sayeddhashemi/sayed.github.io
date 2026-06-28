@@ -23,14 +23,13 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Setup @antfu/ni
-        run: npm i -g @antfu/ni
-
+      # Using standard npm install to avoid lockfile issues
       - name: Install dependencies
-        run: ni
+        run: npm install
 
+      # Building for a root domain (sayed.github.io) requires a simple "/" base
       - name: Build
-        run: nr build --base /${{github.event.repository.name}}/
+        run: npm run build -- --base /
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
